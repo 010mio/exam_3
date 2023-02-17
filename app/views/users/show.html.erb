@@ -12,7 +12,6 @@
 <% @books.each do |book| %>
 <div>
   <%= link_to book_path(book.id) do %>
-    <%= image_tag book.get_image %>
   <% end %>
   <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
   <p>ショップ名：<%= book.title %></p>
