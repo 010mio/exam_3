@@ -2,6 +2,8 @@
   <p>Title：<%= @book.title %></p>
   <p>Body：<%= @book.body %></p>
   <p>User Name：<%= @book.user.name %></p>
+  <p>User：<%= image_tag @book.user.get_profile_image(100,100) %></p>
+  <p>Username：<%= @book.user.name %></p>
   <p>Date：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
 
   <% if @book.user == current_user %>
