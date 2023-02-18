@@ -2,20 +2,27 @@
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image(100,100) %>
- <% if @user == current_user.id %>
-  <p><%= link_to "プロフィール編集", edit_user_path(@user.id),method: :get %></p>
- <%end%>
 </div>
 
 <!-- ユーザーの投稿一覧 -->
+<table class="table table-striped">
+<thead>
+<th>Book detail</th>
+</thead>
 
+<tbody>
 <% @books.each do |book| %>
-<div>
-  <%= link_to book_path(book.id) do %>
-  <% end %>
-  <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
-  <p>ショップ名：<%= book.title %></p>
-  <p>説明：<%= book.body %></p>
-  <p>ユーザーネーム：<%= book.user.name %></p>
-</div>
+<%= link_to book_path(book.id) do %>
 <% end %>
+
+  <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+  <td>ショップ名：<%= book.title %></td>
+  <td>説明：<%= book.body %></td>
+  <td>ユーザーネーム：<%= book.user.name %></td>
+   <% if @user == current_user.id %>
+  <td><%= link_to "Edit", edit_book_path(@book) %></td>
+  <td><%= link_to "Delete", book_path(@book), method: :delete %></td>
+   <%end%>
+<% end %>
+ </tbody>
+</table>
