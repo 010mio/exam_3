@@ -8,10 +8,14 @@
   </ul>
 <% end %>
 
-<%= render 'sidebar', books: @books %>
-
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+<%= render 'users/userinfo', user: @user %>
+<%= render 'books/form', book: @book %>
+</div>
 <!--投稿一覧-->
-  <div class="col-lg-8">
+  <div class="col-md-8 offset-md-1">
     <h3>Books</h3>
   <table class="table table-striped">
     <thead>
@@ -37,6 +41,5 @@
     </tbody>
 </table>
 </div>
-
 </div>
 </div>

@@ -1,29 +1,27 @@
-<div class='col-lg-5 mx-auto'>
+<div class='col-md-5 mx-auto'>
 <h2>Editing Book</h2>
+<%= form_with model: @book do |f| %>
 <!--エラーメッセージ-->
 <% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
+  <%= @book.errors.count %>errors
   <ul>
     <% @book.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
 <% end %>
-
 <!--本の詳細-->
-<%= form_with model: @book do |f| %>
-
   <p>Title</p>
-  <p><%= f.text_field :title, class:"col-lg-8"%></p>
+  <p><%= f.text_field :title, class:"col-md-8"%></p>
   
   <p>Opinion</p>
-  <p><%= f.text_area :body, class:"col-lg-8"%></p>
+  <p><%= f.text_area :body, class:"col-md-8"%></p>
 
   <p><%= f.submit 'Update Book', class:"btn btn-success btn-sm" %></p>
   
 
-<!--%= link_to "Show", book_path(book.id) %>
+<%= link_to "Show", book_path(@book.id) %>
 |
-<!--%= link_to "Back", book_path %>
+<%= link_to "Back", books_path %>
 <% end %>
 </div>

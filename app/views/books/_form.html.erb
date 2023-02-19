@@ -1,0 +1,10 @@
+<!--投稿フォーム-->
+<%= form_with model: book do |f| %>
+    <h3>New book</h3>
+    <p>Title</p>
+    <%= f.text_field :title %>
+    <p>Opnion</p>
+    <%= f.text_area :body %>
+    <p><%= f.submit 'Create Book', class:"btn btn-success btn-sm"%></p>
+<% end %>
+

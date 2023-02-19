@@ -1,0 +1,10 @@
+<!--ユーザー情報-->
+    <h3>User info</h3>
+    <%= image_tag user.get_profile_image(100,100) %>
+    <p class="border-top">name　&emsp;&emsp;<%= user.name %></p>
+    <p class="border-top">introduction　&emsp;&emsp;<%= user.introduction %></p>
+
+    <%= link_to edit_user_path(user) do %>
+    <button type="button" class="btn btn-outline-secondary btn-block">
+    <i class="fas fa-user-cog"></i></button>
+    <%end%>

@@ -1,17 +1,12 @@
-<!--エラーメッセージ-->
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>errors
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= render 'books/sidebar', books: @books %>
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+<%= render 'users/userinfo', user: @user %>
+<%= render 'books/form', book: @book %>
+</div>
 
 <!--ユーザー一覧-->
-  <div class="col-lg-8">
+  <div class="col-md-8 offset-md-1">
     <h3>Users</h3>
   <table class="table table-striped">
     <thead>
@@ -24,9 +19,12 @@
     </thead>
     <% @users.each do |user| %>
     <tbody>
-      <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+      <td><%= image_tag user.get_profile_image(100,100) %></td>
       <td><%= user.name %></td>
       <td><%= link_to user_path(user.id) do%>Show<%end%></td>
     </tbody>
+    <%end%>
   </table>
   </div>
+</div>
+</div>

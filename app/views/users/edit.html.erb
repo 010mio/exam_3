@@ -1,23 +1,30 @@
-<div class='col-lg-5 mx-auto'>
+<div class='col-md-5 mx-auto'>
 <h3>User info</h3>
 <%= form_with model: @user do |f| %>
+  <!--エラーメッセージ-->
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>errors
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
+ 
+  <p>Name</p>
+  <p><%= f.text_field :name, class:"col-lg-8"%></p>
+  
   <p>
-  <label for="inputName">Name</label></br>
-  <%= f.text_field :name, autofocus: true, id:"inputName", class:"col-lg-8"%>
-  </p>
-  <p>
-  <label for="inputImage">Image</label></br>
+  <p>Image</p>
   <%= f.file_field :profile_image, accept: "image/*"%>
   </p>
 
-  <p>
-  <label for="inputIntroduction">Introduction</label></br>
-  <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", class:"col-lg-8" %>
-  </p>
+  <p>Introduction</p>
+  <p><%= f.text_area :introduction, class:"col-lg-8"%></p>
 
-  <p>
-  <%= f.submit "Update User", class:"btn btn-secondary btn-sm" %>
-  </p>
+
+  <p><%= f.submit "Update User", class:"btn btn-secondary btn-sm" %></p>
+
 <% end %>
 </div>
