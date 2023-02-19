@@ -1,15 +1,33 @@
-<div>
+<!--エラーメッセージ-->
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render 'sidebar', books: @books %>
+
+  <div class="col-lg-8">
   <h3>Book detail</h3>
-  <p>Title：<%= @book.title %></p>
-  <p>Body：<%= @book.body %></p>
-  <p>User Name：<%= @book.user.name %></p>
-  <p>User：<%= image_tag @book.user.get_profile_image(100,100) %></p>
-  <p>Username：<%= @book.user.name %></p>
-  <p>Date：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
+  <table class="table table-striped">
+    <thead>
+    </thead>
+      <td><%= link_to user_path(@book.user) do%>
+      <%= image_tag @book.user.get_profile_image(100,100) %>
+      <% end %></td>
+      
+      <td><%= link_to book_path(@book.id) do %>
+      <%= @book.title %>
+      <% end %></td>
+      
+      <td><%= @book.body %></td>
 
-  <% if @book.user == current_user %>
-  <%= link_to "Edit", edit_book_path(@book) %>
-  <%= link_to "Delete", book_path(@book), method: :delete %>
-  <% end %>
-
-</div>
+    <% if @book.user == current_user %>
+     <td><%= link_to "Edit", edit_book_path(@book), class:"btn btn-success btn-sm" %></td>
+     <td><%= link_to "Delete", book_path(@book), method: :delete, class:"btn btn-danger btn-sm" %></td>
+    <% end %>
+  </table>
+  </div>

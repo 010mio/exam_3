@@ -1,8 +1,3 @@
-<!--サイドバー-->
-
-<div class="container">
-<div class="row">
-<div class="col-lg-4">
 <!--エラーメッセージ-->
 <% if @book.errors.any? %>
   <%= @book.errors.count %>errors
@@ -13,27 +8,11 @@
   </ul>
 <% end %>
 
-<!--ユーザー情報-->
-<%= form_with model: @user, url: user_session_path do |f| %>
-<%= @user.name %>
-<%end%>
-<!--投稿フォーム-->
-    <%= form_with model: Book.new do |f| %>
-    <h3>New Bbok</h3>
-    <p>Title</p>
-    <%= f.text_field :title %>
-    <p>Opnion</p>
-    <%= f.text_area :body %>
-    <p><%= f.submit 'Create Book', class:"btn btn-success btn-sm"%></p>
-
-<% end %>
-</div>
-<!--ここまでサイドバー-->
+<%= render 'sidebar', books: @books %>
 
 <!--投稿一覧-->
-
-<% @books.each do |book| %>
   <div class="col-lg-8">
+    <h3>Books</h3>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -43,6 +22,7 @@
       <th colspan="3"></th>
       </tr>
     </thead>
+    <% @books.each do |book| %>
     <tbody>
       <td><%= link_to user_path(book.user_id) do %>
       <%= image_tag book.user.get_profile_image(100,100) %>

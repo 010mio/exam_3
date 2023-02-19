@@ -4,9 +4,11 @@ class ApplicationController < ActionController::Base
 
     #サインイン後の遷移ページ
   def after_sign_in_path_for(resource)
-    user_path(@user.id)
+    user_path(current_user.id)
   end
-
+    #ログアウト後の
+  def after_Log_out_path_for(resource)
+  end
   protected
 
   def configure_permitted_parameters
