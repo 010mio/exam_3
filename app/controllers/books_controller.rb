@@ -6,11 +6,6 @@ class BooksController < ApplicationController
   end
   
   def create
-    #user_id = params[:id].to_i
-    #unless user_id == current_user.id
-    #redirect_to books_path
-    #end
-
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
@@ -18,6 +13,7 @@ class BooksController < ApplicationController
     redirect_to book_path(@book.id)
     else
       @books = Book.all
+      @user = current_user
       render :index
     end
   end
@@ -25,12 +21,14 @@ class BooksController < ApplicationController
   def show
     @book = Book.new
     @books = Book.find(params[:id])
-    @user = current_user
-    #@user = User.find(params[:id])
+    @user = @books.user
   end
   
   def edit
     @book = Book.find(params[:id])
+    unless @book.user_id == current_user.id
+    redirect_to books_path
+    end
   end
   
   def update
